@@ -36,6 +36,8 @@
     }
     .question-block {
       margin-bottom: 30px;
+      padding: 10px;
+      border-radius: 5px;
     }
     .option {
       display: block;
@@ -78,8 +80,9 @@
     .not-answered {
       background-color: #ffe6e6;
       border-left: 4px solid red;
-      padding: 5px 10px;
-      border-radius: 5px;
+    }
+    .wrong {
+      background-color: #ffe6e6;
     }
   </style>
 </head>
@@ -130,7 +133,6 @@
       { question: "8ம் தேதி பணம் கொடு | Pay 8th" },
       { question: "படித்து விட்டு எழுது | Write studying" },
       { question: "எடுத்துக் குடி | Take and drink" },
-      { question: "சுத்தம்மண்ணி பயன்படுத்து | Use clean mud" },
       { question: "ஞாயிறு அன்று செய் | Do it Sunday" },
       { question: "கொஞ்ச நேரத்திற்குப் பின் எடு | Take it a short time" },
       { question: "அப்புறம் கொடு | Give later" },
@@ -149,8 +151,8 @@
     const correctAnswers = [
       "till", "till", "till", "after", "after", "before", "before", "before",
       "at", "at", "at", "at", "after", "before", "till", "at", "at", "at",
-      "on", "on", "on", "after", "after", "after", "on", "after", "after",
-      "on", "on", "after", "on", "after", "before", "at", "before", "after", "at"
+      "on", "on", "on", "after", "after", "on", "after", "after", "on",
+      "on", "after", "on", "after", "before", "at", "before", "after", "at"
     ];
 
     const options = ["at", "on", "after", "till", "before"];
@@ -177,15 +179,24 @@
       quiz.forEach((q, i) => {
         const block = document.getElementById(`block${i}`);
         const selected = document.querySelector(`input[name='q${i}']:checked`);
+        block.classList.remove("not-answered", "wrong");
 
-        block.classList.remove("not-answered");
+        // Clear old feedback
+        const oldFeedback = block.querySelector(".result");
+        if (oldFeedback) oldFeedback.remove();
 
         if (!selected) {
           allAnswered = false;
           block.classList.add("not-answered");
-        }
-        if (selected && selected.value === correctAnswers[i]) {
+        } else if (selected.value === correctAnswers[i]) {
           score++;
+        } else {
+          block.classList.add("wrong");
+          const feedback = document.createElement("p");
+          feedback.classList.add("result");
+          feedback.style.color = "green";
+          feedback.textContent = `✅ Correct answer: ${correctAnswers[i]}`;
+          block.appendChild(feedback);
         }
       });
 

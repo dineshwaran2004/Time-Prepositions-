@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Next Page - Welcome!</title>
+  <style>
+    body {
+      background: #fefefe;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ✅ Header/Form Styling */
+    form {
+      background-color: #f1f1f1;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .title {
+      font-size: 24px;
+      color: #4CAF50;
+      margin: 0;
+    }
+
+    /* ✅ Content Styling */
+    .question-block {
+      background: #ffffff;
+      padding: 20px;
+      margin: 10px auto;
+      border-radius: 8px;
+      max-width: 700px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .question-block p {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .question-block input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    .question-block button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .wrong {
+      color: red;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin: 30px 0;
+      font-size: 16px;
+      text-decoration: none;
+      color: #fff;
+      background: #4CAF50;
+      padding: 10px 20px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🧠 Header as a Form -->
+  <form>
+    <div class="header-container">
+      <img src="dna.png" alt="Logo" class="logo" />
+      <h1 class="title">📝 மொழிபெயர்ப்பு பயிற்சி</h1>
+    </div>
+  </form>
+
+  <!-- 📝 Question Sections -->
+  <div class="question-block">
+    <p>1. 7 மணி வரை எழுது</p>
+    <input type="text" id="q1" placeholder="Your answer here..." />
+    <button onclick="checkAnswer('q1', ['write till 7 o\'clock', 'write till 7 clock'])">Check</button>
+    <div id="f1" class="feedback"></div>
+  </div>
+
+  <div class="question-block">
+    <p>2. 5 மணிக்கு மேல எழுது</p>
+    <input type="text" id="q2" placeholder="Your answer here..." />
+    <button onclick="checkAnswer('q2', ['write after 5 o\'clock', 'write after 5 clock'])">Check</button>
+    <div id="f2" class="feedback"></div>
+  </div>
+
+  <div class="question-block">
+    <p>3. 3 மணிக்கு முன் வா</p>
+    <input type="text" id="q3" placeholder="Your answer here..." />
+    <button onclick="checkAnswer('q3', ['come before 3 o\'clock', 'come before 3 clock'])">Check</button>
+    <div id="f3" class="feedback"></div>
+  </div>
+
+  <div class="question-block">
+    <p>4. 10 மணிக்கு போ</p>
+    <input type="text" id="q4" placeholder="Your answer here..." />
+    <button onclick="checkAnswer('q4', ['go at 10 o\'clock', 'go at 10 clock'])">Check</button>
+    <div id="f4" class="feedback"></div>
+  </div>
+
+  <div class="question-block">
+    <p>5. 7ம் தேதி சொல்</p>
+    <input type="text" id="q5" placeholder="Your answer here..." />
+    <button onclick="checkAnswer('q5', ['tell on 7th'])">Check</button>
+    <div id="f5" class="feedback"></div>
+  </div>
+
+  <a href="index.html">🔁 முதல் பக்கம்👺
+</a>
+
+  <!-- ✅ JavaScript -->
+  <script>
+    function checkAnswer(inputId, correctAnswers) {
+      const userInput = document.getElementById(inputId).value.trim().toLowerCase();
+      const feedback = document.getElementById("f" + inputId.replace("q", ""));
+      
+      if (correctAnswers.includes(userInput)) {
+        feedback.textContent = "✅ Correct!";
+        feedback.className = "feedback correct";
+      } else {
+        feedback.textContent = "❌ Incorrect. Try again.";
+        feedback.className = "feedback wrong";
+      }
+    }
+  </script>
+
+</body>
+</html>

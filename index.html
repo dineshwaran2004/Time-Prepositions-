@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preposition Quiz - முன்னிலை வார்த்தைகள்</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .quiz-container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header img {
+      height: 60px;
+    }
+    .header h1 {
+      font-size: 20px;
+      color: #333;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .question-block {
+      margin-bottom: 30px;
+    }
+    .option {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    #popup-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    #popup img {
+      width: 100px;
+      height: auto;
+    }
+    .not-answered {
+      background-color: #ffe6e6;
+      border-left: 4px solid red;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="header">
+      <img src="dna.png" alt="Logo">
+      <h1>Pronouns</h1>
+    </div>
+    <h2>Correct Preposition தேர்வு செய்யவும் (at / on / after / till / before):</h2>
+    <form id="quizForm">
+      <div id="quizQuestions"></div>
+      <button type="submit">Submit All / எல்லாவற்றையும் சமர்ப்பிக்கவும்</button>
+    </form>
+    <div id="finalResult"></div>
+  </div>
+
+  <!-- Popup for perfect score -->
+  <div id="popup">
+    <div id="popup-content">
+      <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Success">
+      <h3>🎉 வாழ்த்துகள்! எல்லா பதில்களும் சரியாக இருக்கின்றன!</h3>
+    </div>
+  </div>
+
+  <script>
+    const quiz = [
+  { question: "7 மணி வரை எழுது | Write till 7 o'clock", answer: "till" },
+  { question: "8 மணிவரை இங்கு இரு | Be here till 8 o'clock", answer: "till" },
+  { question: "4 மணி வரை படி | Study till 4 o'clock", answer: "till" },
+  { question: "5 மணிக்கு மேல எழுது | Write after 5 o'clock", answer: "after" },
+  { question: "6 மணிக்கு மேல சாப்பிடு | Eat after 6 o'clock", answer: "after" },
+  { question: "3 மணிக்கு முன் வா(ங்கு) | Come before 3 o'clock", answer: "before" },
+  { question: "4 மணிக்கு முன் வா(ங்கு) | Come before 4 o'clock", answer: "before" },
+  { question: "5 மணிக்கு முன் செய் | Do it before 5 o'clock", answer: "before" },
+  { question: "9 மணிக்கு வா | Come at 9 o'clock", answer: "at" },
+  { question: "10 மணிக்கு போ | Go at 10 o'clock", answer: "at" },
+  { question: "6 மணிக்கு வாங்கு | Buy at 6 o'clock", answer: "at" },
+  { question: "5 மணிக்கு போன் பண்ணு | Call at 5 o'clock", answer: "at" },
+  { question: "4 மணிக்கு மேல படி | Study after 4 o'clock", answer: "after" },
+  { question: "1 மணிக்கு முன் சாப்பிடு | Eat before 1 o'clock", answer: "before" },
+  { question: "2 மணி வரை அங்கு இரு | Be there till 2 o'clock", answer: "till" },
+  { question: "10 மணிக்கு ஆரம்பி | Start at 10 o'clock", answer: "at" },
+  { question: "11 மணிக்கு அனுப்பு | Send at 11 o'clock", answer: "at" },
+  { question: "12 மணிக்கு கொடு | Give at 12 o'clock", answer: "at" },
+  { question: "மே தேதி கேள் | Ask on May date", answer: "on" },
+  { question: "7ம் தேதி சொல் | Tell on 7th", answer: "on" },
+  { question: "8ம் தேதி பணம் கொடு | Pay on 8th", answer: "on" },
+  { question: "படித்து விட்டு எழுது | Write after studying", answer: "after" },
+  { question: "எடுத்துக் குடி | Take and drink", answer: "after" },
+  { question: "சுத்தம்மண்ணி பயன்படுத்து | Use clean mud", answer: "after" },
+  { question: "ஞாயிறு அன்று செய் | Do it on Sunday", answer: "on" },
+  { question: "கொஞ்ச நேரத்திற்குப் பின் எடு | Take it after a short time", answer: "after" },
+  { question: "அப்புறம் கொடு | Give later", answer: "after" },
+  { question: "புதன்கிழமை செய் | Do it on Wednesday", answer: "on" },
+  { question: "நேரத்துக்கு வா | Come on time", answer: "on" },
+  { question: "வியாழக்கிழமைக்கு மேல வா | Come after Thursday", answer: "after" },
+  { question: "ஞாயிற்றுக்கிழமையை கேள் | Ask about Sunday", answer: "on" },
+  { question: "5 நிமிடத்திற்கு பின் செய் | Do after 5 minutes", answer: "after" },
+  { question: "ஞாயிற்றுக்கிழமைக்கு முன் செய் | Do before Sunday", answer: "before" },
+  { question: "7 மணிக்கு இங்கு இரு | Be here at 7 o'clock", answer: "at" },
+  { question: "9 மணிக்கு முன் திரும்பி வா | Return before 9 o'clock", answer: "before" },
+  { question: "6 மணிக்கு பின் போ | Go after 6 o'clock", answer: "after" },
+  { question: "6 மணிக்கு அவர்களை கூப்பிடு | Call them at 6 o'clock", answer: "at" }
+];
+    const options = ["at", "on", "after", "till", "before"];
+
+    const quizContainer = document.getElementById("quizQuestions");
+
+    quiz.forEach((q, index) => {
+      const div = document.createElement("div");
+      div.classList.add("question-block");
+      div.setAttribute("id", `block${index}`);
+      div.innerHTML = `<p><strong>Q${index + 1}.</strong> ${q.question}</p>` +
+        options.map(opt => `
+          <label class="option">
+            <input type="radio" name="q${index}" value="${opt}"> ${opt}
+          </label>
+        `).join("");
+      quizContainer.appendChild(div);
+    });
+
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let score = 0;
+      let allAnswered = true;
+
+      quiz.forEach((q, i) => {
+        const block = document.getElementById(`block${i}`);
+        const selected = document.querySelector(`input[name='q${i}']:checked`);
+
+        block.classList.remove("not-answered");
+
+        if (!selected) {
+          allAnswered = false;
+          block.classList.add("not-answered");
+        }
+        if (selected && selected.value === q.answer) {
+          score++;
+        }
+      });
+
+      if (!allAnswered) {
+        alert("தயவுசெய்து எல்லா கேள்விகளுக்கும் பதிலளிக்கவும்.");
+        return;
+      }
+
+      const resultText = `நீங்கள் ${quiz.length} இல் ${score} சரியாகத் தேர்ந்தெடுத்துள்ளீர்கள்.`;
+      document.getElementById("finalResult").innerText = resultText;
+
+      if (score === quiz.length) {
+        document.getElementById("popup").style.display = "flex";
+      }
+    });
+  </script>
+</body>
+</html>

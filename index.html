@@ -107,46 +107,53 @@
 
   <script>
     const quiz = [
-  { question: "7 மணி வரை எழுது | Write till 7 o'clock", answer: "till" },
-  { question: "8 மணிவரை இங்கு இரு | Be here till 8 o'clock", answer: "till" },
-  { question: "4 மணி வரை படி | Study till 4 o'clock", answer: "till" },
-  { question: "5 மணிக்கு மேல எழுது | Write after 5 o'clock", answer: "after" },
-  { question: "6 மணிக்கு மேல சாப்பிடு | Eat after 6 o'clock", answer: "after" },
-  { question: "3 மணிக்கு முன் வா(ங்கு) | Come before 3 o'clock", answer: "before" },
-  { question: "4 மணிக்கு முன் வா(ங்கு) | Come before 4 o'clock", answer: "before" },
-  { question: "5 மணிக்கு முன் செய் | Do it before 5 o'clock", answer: "before" },
-  { question: "9 மணிக்கு வா | Come at 9 o'clock", answer: "at" },
-  { question: "10 மணிக்கு போ | Go at 10 o'clock", answer: "at" },
-  { question: "6 மணிக்கு வாங்கு | Buy at 6 o'clock", answer: "at" },
-  { question: "5 மணிக்கு போன் பண்ணு | Call at 5 o'clock", answer: "at" },
-  { question: "4 மணிக்கு மேல படி | Study after 4 o'clock", answer: "after" },
-  { question: "1 மணிக்கு முன் சாப்பிடு | Eat before 1 o'clock", answer: "before" },
-  { question: "2 மணி வரை அங்கு இரு | Be there till 2 o'clock", answer: "till" },
-  { question: "10 மணிக்கு ஆரம்பி | Start at 10 o'clock", answer: "at" },
-  { question: "11 மணிக்கு அனுப்பு | Send at 11 o'clock", answer: "at" },
-  { question: "12 மணிக்கு கொடு | Give at 12 o'clock", answer: "at" },
-  { question: "மே தேதி கேள் | Ask on May date", answer: "on" },
-  { question: "7ம் தேதி சொல் | Tell on 7th", answer: "on" },
-  { question: "8ம் தேதி பணம் கொடு | Pay on 8th", answer: "on" },
-  { question: "படித்து விட்டு எழுது | Write after studying", answer: "after" },
-  { question: "எடுத்துக் குடி | Take and drink", answer: "after" },
-  { question: "சுத்தம்மண்ணி பயன்படுத்து | Use clean mud", answer: "after" },
-  { question: "ஞாயிறு அன்று செய் | Do it on Sunday", answer: "on" },
-  { question: "கொஞ்ச நேரத்திற்குப் பின் எடு | Take it after a short time", answer: "after" },
-  { question: "அப்புறம் கொடு | Give later", answer: "after" },
-  { question: "புதன்கிழமை செய் | Do it on Wednesday", answer: "on" },
-  { question: "நேரத்துக்கு வா | Come on time", answer: "on" },
-  { question: "வியாழக்கிழமைக்கு மேல வா | Come after Thursday", answer: "after" },
-  { question: "ஞாயிற்றுக்கிழமையை கேள் | Ask about Sunday", answer: "on" },
-  { question: "5 நிமிடத்திற்கு பின் செய் | Do after 5 minutes", answer: "after" },
-  { question: "ஞாயிற்றுக்கிழமைக்கு முன் செய் | Do before Sunday", answer: "before" },
-  { question: "7 மணிக்கு இங்கு இரு | Be here at 7 o'clock", answer: "at" },
-  { question: "9 மணிக்கு முன் திரும்பி வா | Return before 9 o'clock", answer: "before" },
-  { question: "6 மணிக்கு பின் போ | Go after 6 o'clock", answer: "after" },
-  { question: "6 மணிக்கு அவர்களை கூப்பிடு | Call them at 6 o'clock", answer: "at" }
-];
-    const options = ["at", "on", "after", "till", "before"];
+      { question: "7 மணி வரை எழுது | Write 7 o'clock" },
+      { question: "8 மணிவரை இங்கு இரு | Be here 8 o'clock" },
+      { question: "4 மணி வரை படி | Study 4 o'clock" },
+      { question: "5 மணிக்கு மேல எழுது | Write 5 o'clock" },
+      { question: "6 மணிக்கு மேல சாப்பிடு | Eat 6 o'clock" },
+      { question: "3 மணிக்கு முன் வா(ங்கு) | Come 3 o'clock" },
+      { question: "4 மணிக்கு முன் வா(ங்கு) | Come 4 o'clock" },
+      { question: "5 மணிக்கு முன் செய் | Do it 5 o'clock" },
+      { question: "9 மணிக்கு வா | Come 9 o'clock" },
+      { question: "10 மணிக்கு போ | Go 10 o'clock" },
+      { question: "6 மணிக்கு வாங்கு | Buy 6 o'clock" },
+      { question: "5 மணிக்கு போன் பண்ணு | Call 5 o'clock" },
+      { question: "4 மணிக்கு மேல படி | Study 4 o'clock" },
+      { question: "1 மணிக்கு முன் சாப்பிடு | Eat 1 o'clock" },
+      { question: "2 மணி வரை அங்கு இரு | Be there 2 o'clock" },
+      { question: "10 மணிக்கு ஆரம்பி | Start 10 o'clock" },
+      { question: "11 மணிக்கு அனுப்பு | Send 11 o'clock" },
+      { question: "12 மணிக்கு கொடு | Give 12 o'clock" },
+      { question: "மே தேதி கேள் | Ask May date" },
+      { question: "7ம் தேதி சொல் | Tell 7th" },
+      { question: "8ம் தேதி பணம் கொடு | Pay 8th" },
+      { question: "படித்து விட்டு எழுது | Write studying" },
+      { question: "எடுத்துக் குடி | Take and drink" },
+      { question: "சுத்தம்மண்ணி பயன்படுத்து | Use clean mud" },
+      { question: "ஞாயிறு அன்று செய் | Do it Sunday" },
+      { question: "கொஞ்ச நேரத்திற்குப் பின் எடு | Take it a short time" },
+      { question: "அப்புறம் கொடு | Give later" },
+      { question: "புதன்கிழமை செய் | Do it Wednesday" },
+      { question: "நேரத்துக்கு வா | Come time" },
+      { question: "வியாழக்கிழமைக்கு மேல வா | Come Thursday" },
+      { question: "ஞாயிற்றுக்கிழமையை கேள் | Ask about Sunday" },
+      { question: "5 நிமிடத்திற்கு பின் செய் | Do 5 minutes" },
+      { question: "ஞாயிற்றுக்கிழமைக்கு முன் செய் | Do Sunday" },
+      { question: "7 மணிக்கு இங்கு இரு | Be here 7 o'clock" },
+      { question: "9 மணிக்கு முன் திரும்பி வா | Return 9 o'clock" },
+      { question: "6 மணிக்கு பின் போ | Go 6 o'clock" },
+      { question: "6 மணிக்கு அவர்களை கூப்பிடு | Call them 6 o'clock" }
+    ];
 
+    const correctAnswers = [
+      "till", "till", "till", "after", "after", "before", "before", "before",
+      "at", "at", "at", "at", "after", "before", "till", "at", "at", "at",
+      "on", "on", "on", "after", "after", "after", "on", "after", "after",
+      "on", "on", "after", "on", "after", "before", "at", "before", "after", "at"
+    ];
+
+    const options = ["at", "on", "after", "till", "before"];
     const quizContainer = document.getElementById("quizQuestions");
 
     quiz.forEach((q, index) => {
@@ -177,7 +184,7 @@
           allAnswered = false;
           block.classList.add("not-answered");
         }
-        if (selected && selected.value === q.answer) {
+        if (selected && selected.value === correctAnswers[i]) {
           score++;
         }
       });
